@@ -36,7 +36,7 @@ pipeline {
       stage('Push Image') {
           steps {
              withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
-             bat 'docker push ${IMAGE_REPO}/${NAME}:${VERSION}'
+             bat 'docker push megha-6/megha-argocd-image:3dc1bd26f260ae205109c4362606d09c1471b40f'
         }
       }
     }
