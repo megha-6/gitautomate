@@ -27,7 +27,9 @@ pipeline {
     }
       stage('Build Image') {
           steps {
-             bat cd ..
+             sh  """
+                    pwd 
+                """
              bat "docker build -t ${NAME} ."
              bat "docker tag ${NAME}:latest ${IMAGE_REPO}/${NAME}:${VERSION}"
         }
