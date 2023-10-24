@@ -13,9 +13,10 @@ pipeline {
           steps {
               script{
                   echo 'git checkout'
-                  git branch: "main", credentialsId: 'github-usr-psw', url: 'https://github.com/megha-6/gitops-argocd.git'
+                  git branch: "main", credentialsId: 'github-usr-psw', url: 'https://github.com/megha-6/cnd-pune.git'
                   echo 'Implement unit tests if applicable.'
                   echo 'This stage is a sample placeholder'
+                  stash name: 'git-stash', includes: '**/*'
       }
     }
       }
@@ -27,7 +28,7 @@ pipeline {
     }
       stage('Build Image') {
           steps {
-             
+                  unstash 'git-stash'
              bat "docker build -f Dockerfile -t ${NAME} ."
              bat "docker tag ${NAME}:latest ${IMAGE_REPO}/${NAME}:${VERSION}"
         }
