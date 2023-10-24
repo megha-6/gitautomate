@@ -27,7 +27,7 @@ pipeline {
     }
       stage('Build Image') {
           steps {
-             bat "docker build -f Dockerfile -t ${NAME} ."
+             bat "docker build -t ${NAME} ."
              bat "docker tag ${NAME}:latest ${IMAGE_REPO}/${NAME}:${VERSION}"
         }
       }
