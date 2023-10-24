@@ -33,6 +33,14 @@ pipeline {
              bat "docker tag ${NAME}:latest ${IMAGE_REPO}/${NAME}:${VERSION}"
         }
       }
+      stage('Push Image') {
+          steps {
+             withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
+             bat 'docker push ${IMAGE_REPO}/${NAME}:${VERSION}'
+        }
+      }
+    }
+
     }
 
     }
