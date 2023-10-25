@@ -34,10 +34,10 @@ pipeline {
              
         }
       }
-      stage('Push Image') {
-          steps {
-             withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
-             bat 'docker push meghakadur/argocd'
+       stage('Push Image') {
+           steps {
+              withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
+              bat 'docker push meghakadur/argocd'
              
 
         }
