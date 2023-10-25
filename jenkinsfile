@@ -30,13 +30,14 @@ pipeline {
           steps {
                   unstash 'git-stash'
              bat "docker build -f Dockerfile -t ${NAME} ."
-             bat "docker tag ${NAME}:latest ${IMAGE_REPO}/${NAME}:${VERSION}"
+             bat "docker tag ${NAME}:latest ${IMAGE_REPO}/${NAME}"
+             
         }
       }
       stage('Push Image') {
           steps {
              withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
-             bat 'docker push meghakadur/argocd:latest'
+             bat 'docker push ${IMAGE_REPO}/${NAME}'
              
 
         }
