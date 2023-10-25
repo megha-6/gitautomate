@@ -9,6 +9,7 @@ spec:
   source:
     repoURL: https://github.com/megha-6/cnd-pune.git
     targetRevision: HEAD
+    path: dev
     
   destination: 
     server: https://kubernetes.default.svc
