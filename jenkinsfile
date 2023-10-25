@@ -2,9 +2,9 @@ pipeline {
   agent any
 
   environment {
-    NAME = "megha-argocd-image"
+    NAME = "argocd"
     VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
-    IMAGE_REPO = "megha-6"
+    IMAGE_REPO = "meghakadur"
     GIT_TOKEN = credentials('github-token')
   }
   
@@ -36,7 +36,8 @@ pipeline {
       stage('Push Image') {
           steps {
              withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
-             bat 'docker push megha-6/megha-argocd-image:latest'
+             bat 'docker push meghakadur/argocd:tagname:latest'
+             
 
         }
       }
