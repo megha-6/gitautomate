@@ -61,7 +61,38 @@ pipeline {
         }
       }
     }
+      stage('Update Manifest') {
+          steps {
+              dir("gitops-argocd/jenkins-demo") {
+                bat "git config --global user.email 'ci@ci.com'"
+                bat 'sed -i "s#siddharth67.*#${IMAGE_REPO}/${NAME}:${VERSION}#g" deployment.yaml'
+                bat 'cat deployment.yaml'
+        }
+      }
+    }
+      stage('Commit & Push') {
+          steps {
+             dir("gitops-argocd/jenkins-demo") {
+               bat 'git remote set-url origin https://github.com/megha-6/gitops-argocd.git'
+               bat 'git checkout feature'
+               bat 'git add -A'
+               bat 'git commit -am "Updated new image version for VERSION - $VERSION"'
+               bat 'git push origin feature'
+        }
+      }
+    }
+      stage('Raise PR') {
+          steps {
+             dir("gitops-argocd/jenkins-demo") {
+               bat 'gh auth login -h github.com  -p https --with-token < /home/devsecops/token.txt'
+               bat 'gh auth status'
+               bat 'gh pr create -a @me --title "Updated Image Version - $VERSION" --body "Planets Updated in Solar System - $VERSION"  -B main'
+        }
+      }
+    }
   }
 }
+  
+
 
       
