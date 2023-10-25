@@ -34,35 +34,16 @@ pipeline {
              
         }
       }
-       stage('Push Image') {
-           steps {
-              withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
-              bat 'docker push meghakadur/argocd'
+      stage('Push Image') {
+          steps {
+                  withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
+                  bat 'docker push meghakadur/argocd'
              
 
         }
       }
-      stage('Clone/Pull Repo') {
-          steps {
-              script {
-                  if (fileExists('test-cd')) {
-
-                    echo 'Cloned repo already exists - Pulling latest changes'
-
-                    dir("test-cd") {
-                    bat 'git pull'
-            }
-
-                  } else {
-                    echo 'Repo does not exists - Cloning the repo'
-                    bat 'git clone -b feature-gitea https://github.com/megha-6/gitops-argocd.git'
-          }
-        }
       }
-    }
-    }
-
-    }
-
+  }
 }
-  
+
+      
