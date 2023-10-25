@@ -36,7 +36,7 @@ pipeline {
       stage('Push Image') {
           steps {
              withDockerRegistry([credentialsId: "docker-credentials", url: ""]) {
-             bat 'docker push meghakadur/argocd:tagname:latest'
+             bat 'docker push meghakadur/argocd:latest'
              
 
         }
