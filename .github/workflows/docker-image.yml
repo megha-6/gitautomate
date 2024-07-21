@@ -1,4 +1,4 @@
-name: Php application
+name: Php application to build the image
 
 on:
   push:
