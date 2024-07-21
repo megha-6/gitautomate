@@ -23,7 +23,11 @@ jobs:
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
     - name: Push Docker image
-      run: docker push meghakadur/argocd:1.0.RELEASE${{ github.run_number }} 
+      uses: docker/build-push-action@v4
+      with:
+       context: .
+       push: true
+       tags: meghakadur/argocd:app-${{ github.run_number }} 
 
     - name: scanning for SBOM
       uses: anchore/sbom-action@v0
