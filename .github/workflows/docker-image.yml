@@ -35,7 +35,7 @@ jobs:
     - uses: advanced-security/sbom-generator-action@v0.0.1
       id: sbom
       env: 
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN: 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
     - uses: actions/upload-artifact@v3.1.0
       with: 
         path: ${{steps.sbom.outputs.fileName }}
