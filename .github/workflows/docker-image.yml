@@ -1,4 +1,4 @@
-name: Build docker image and push docker image to dockerhub
+name: Php application
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
-    - name: Build Docker iamge
+    - name: Build Docker image
       run: docker build -t meghakadur/argocd:1.0.RELEASE${{ github.run_number }}  -f files/Dockerfile .
 
 
@@ -40,3 +40,31 @@ jobs:
       with: 
         path: ${{steps.sbom.outputs.fileName }}
         name: "SBOM"
+
+
+  modifygit:
+    needs: build-and-publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: changing the deployment of git repo
+        with:
+          repository: 'megha-6/App-DevOps'
+          token: ${{ secrets.MY_TOKEN }}
+      - name: modify the image
+        run: |
+          git config user.email meghakadur691993@gmail.com
+          git config user.name megha-6
+          pwd
+          cat deployment.yaml
+          pwd
+          sed -i "s+tanmay238/images.*+tanmay238/images:app-$RUN_NUMBER+g" deployment.yaml
+          sed -i "s+meghakadur/argocd.*+meghakadur/argocd:app-$RUN_NUMBER+g" deployment.yaml
+          cat deployment.yaml
+          git add .
+          git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
+          git push origin main
+        env:
+          GIT_USERNAME: ${{ secrets.GIT_USE }}R
+          GIT_PASSWORD: ${{ secrets.GIT_PSW }}
+          RUN_NUMBER: ${{ github.run_number }}
