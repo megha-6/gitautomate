@@ -16,7 +16,7 @@ spec:
         app: solar-system
     spec:
       containers:
-      - image: meghakadur/argocd:latest
+      - image: meghakadur/argocd:app-44
         name: solar-system
         ports: 
         - containerPort: 80
