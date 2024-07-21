@@ -2,8 +2,10 @@ name: Php application to build the image
 
 on:
   push:
-    branches: 
+    branches:
       - main
+    paths-ignore:
+      - 'dev/**'
 
 jobs:
   build-and-publish:
