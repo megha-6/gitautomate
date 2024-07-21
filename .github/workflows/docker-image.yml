@@ -16,14 +16,14 @@ jobs:
       uses: docker/setup-buildx-action@v1
 
     - name: Build Docker image
-      run: docker build -t meghakadur/argocd:app-{{ github.run_number }}  -f files/Dockerfile .
+      run: docker build -t meghakadur/argocd:1.0.RELEASE${{ github.run_number }}  -f files/Dockerfile ..
 
 
     - name: Login to Docker Hub
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
     - name: Push Docker image
-      run: docker push meghakadur/argocd:app-${{ github.run_number }} 
+      run: docker push meghakadur/argocd:1.0.RELEASE${{ github.run_number }}  
       
 
     - name: scanning for SBOM
@@ -61,7 +61,7 @@ jobs:
           cd dev
           cat deployment.yaml
           pwd
-          sed -i "s+meghakadur/argocd.*+meghakadur/argocd:app-$RUN_NUMBER+g" deployment.yaml
+          sed -i "s+meghakadur/argocd.*+meghakadur/argocd:1.0.RELEASE-$RUN_NUMBER+g" deployment.yaml
           cat deployment.yaml
           git add .
           git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
