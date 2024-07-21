@@ -57,6 +57,7 @@ jobs:
           git config user.name megha-6
           pwd
           ls
+          cd dev
           cat deployment.yaml
           pwd
           sed -i "s+meghakadur/argocd.*+meghakadur/argocd:app-$RUN_NUMBER+g" deployment.yaml
