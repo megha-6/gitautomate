@@ -31,7 +31,7 @@ jobs:
     - name: scanning for SBOM
       uses: anchore/sbom-action@v0
       with:
-        image: meghakadur/argocd:1.0.RELEASE${{ github.run_number }} 
+        image: meghakadur/argocd:1.0.RELEASE-${{ github.run_number }} 
         registry-username: ${{ secrets.DOCKER_USERNAME }}
         registry-password: ${{ secrets.DOCKER_PASSWORD }}
     - uses: actions/checkout@v3
