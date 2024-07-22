@@ -19,4 +19,4 @@ spec:
       - image: meghakadur/argocd:1.0.RELEASE-72
         name: solar-system
         ports: 
-        - containerPort: 80
+        - containerPort: 8088
