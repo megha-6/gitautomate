@@ -7,6 +7,6 @@ spec:
     app: sampleapp
   ports:
     - protocol: TCP
-      port: 80
+      port: 8071
       targetPort: 8071
-      nodePort: 30080
+      nodePort: 8071
