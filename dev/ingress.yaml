@@ -13,4 +13,4 @@ spec:
               service:
                 name: sampleapp
                 port:
-                  number: 8091
+                  number: 8092
