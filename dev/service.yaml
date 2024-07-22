@@ -6,6 +6,6 @@ spec:
   selector:
     app: sampleapp
   ports:
-    - port: 8071
-      targetPort: 8071
+    - port: 80
+      targetPort: 80
   type: NodePort
