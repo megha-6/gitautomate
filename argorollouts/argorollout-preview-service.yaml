@@ -1,0 +1,12 @@
+# sampleapp-preview-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: sampleapp-preview
+spec:
+  selector:
+    app: sampleapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
