@@ -2,12 +2,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: sampleapp
+  name: sampleapp-argorollout
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: sampleapp
+      app: sampleapp-argorollout
   strategy:
     blueGreen:
       activeService: sampleapp-active
@@ -15,10 +15,10 @@ spec:
   template:
     metadata:
       labels:
-        app: sampleapp
+        app: sampleapp-argorollout
     spec:
       containers:
-      - name: sampleapp
+      - name: sampleapp-argorollout
         image: meghakadur/argocd:1.0.RELEASE-93
         ports:
         - containerPort: 80
