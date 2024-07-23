@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: sampleapp
+    app: sampleapp-argorollout
   name: sampleapp
 spec:
   replicas: 2
