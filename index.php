@@ -61,7 +61,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Dynamic PHP Project</h1>
+        <h1>Welcome to the "GitAutomate" Team</h1>
         <p>Click the button below to start the live clock</p>
         <button onclick="startClock()">Start Clock</button>
         <div id="clock"></div>
