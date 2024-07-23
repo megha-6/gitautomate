@@ -5,7 +5,7 @@ metadata:
   name: sampleapp-preview
 spec:
   selector:
-    app: sampleapp
+    app: sampleapp-argorollout
   ports:
     - protocol: TCP
       port: 80
