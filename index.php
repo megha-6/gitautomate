@@ -7,7 +7,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #B3D1FF, #E6F0FF);
+            background: linear-gradient(135deg, #B3D1FF, red);
             overflow: hidden;
             display: flex;
             justify-content: center;
