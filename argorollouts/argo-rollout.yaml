@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
       - name: sampleapp-argorollout
-        image: meghakadur/argocd:1.0.RELEASE-93
+        image: meghakadur/argocd:1.0.RELEASE-94
         ports:
         - containerPort: 80
