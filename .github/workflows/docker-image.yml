@@ -1,50 +1,40 @@
 name: Php application to build the image
-
 on:
   push:
     branches:
       - main
     paths-ignore:
-      - 'argorollouts/argo-rollout.yaml'
-
+      - 'dev/**'
+      - 'argorollouts/**'
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
-
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
-
     - name: Build Docker image
       run: docker build -t meghakadur/argocd:1.0.RELEASE-${{ github.run_number }}  -f files/Dockerfile .
-
-
     - name: Login to Docker Hub
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-
     - name: Push Docker image
-      run: docker push meghakadur/argocd:1.0.RELEASE-${{ github.run_number }}  
-      
-
+      run: docker push meghakadur/argocd:1.0.RELEASE-${{ github.run_number }}
     - name: scanning for SBOM
       uses: anchore/sbom-action@v0
       with:
-        image: meghakadur/argocd:1.0.RELEASE-${{ github.run_number }} 
+        image: meghakadur/argocd:1.0.RELEASE-${{ github.run_number }}
         registry-username: ${{ secrets.DOCKER_USERNAME }}
         registry-password: ${{ secrets.DOCKER_PASSWORD }}
     - uses: actions/checkout@v3
     - uses: advanced-security/sbom-generator-action@v0.0.1
       id: sbom
-      env: 
+      env:
         GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
     - uses: actions/upload-artifact@v3.1.0
-      with: 
+      with:
         path: ${{steps.sbom.outputs.fileName }}
         name: "SBOM"
-
-
   modifygit:
     needs: build-and-publish
     runs-on: ubuntu-latest
@@ -60,11 +50,11 @@ jobs:
           git config user.name megha-6
           pwd
           ls
-          cd argorollouts
-          cat argo-rollout.yaml
+          cd dev
+          cat deployment.yaml
           pwd
-          sed -i "s+meghakadur/argocd.*+meghakadur/argocd:1.0.RELEASE-$RUN_NUMBER+g" argo-rollout.yaml
-          cat argo-rollout.yaml
+          sed -i "s+meghakadur/argocd.*+meghakadur/argocd:1.0.RELEASE-$RUN_NUMBER+g" deployment.yaml
+          cat deployment.yaml
           git add .
           git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
           git push origin main
