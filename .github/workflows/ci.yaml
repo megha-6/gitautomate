@@ -4,9 +4,8 @@ name: Php application to build the images
 on:
   push:
     branches:
-      - main
+      - canary
     paths-ignore:
-      - 'dev/deployment.yaml**'
       - 'argorollouts/argo-rollout.yaml**'
       - 'README.md'
 jobs:
@@ -74,11 +73,11 @@ jobs:
           git config user.name megha-6
           pwd
           ls
-          cd dev
-          cat deployment.yaml
+          cd argorollouts
+          cat argo-rollout.yaml
           pwd
-          sed -i "s+meghakadur/argocd.*+meghakadur/argocd:1.0.RELEASE-$RUN_NUMBER+g" deployment.yaml
-          cat deployment.yaml
+          sed -i "s+meghakadur/argocd.*+meghakadur/argocd:1.0.RELEASE-$RUN_NUMBER+g" argo-rollout.yaml
+          cat argo-rollout.yaml
           git add .
           git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
           git push origin main
