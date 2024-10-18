@@ -6,8 +6,8 @@ on:
     branches:
       - main
     paths-ignore:
-      - 'dev/**'
-      - 'argorollouts/**'
+      - 'dev/deployment.yaml**'
+      - 'argorollouts/argo-rollout.yaml**'
       - 'README.md'
 jobs:
   build-and-publish:
