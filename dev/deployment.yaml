@@ -20,3 +20,5 @@ spec:
         name: sampleapp
         ports: 
         - containerPort: 80
+
+        
