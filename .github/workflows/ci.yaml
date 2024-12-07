@@ -1,4 +1,4 @@
-#This is a process build an image and deployed to DockerHub which will generat SBOM,Artifacts.
+#This is a proc build an image and deployed to DockerHub which will generat SBOM,Artifacts.
 
 name: Php application to build the images
 on:
