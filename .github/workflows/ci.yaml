@@ -36,9 +36,28 @@ jobs:
       run: docker push meghakadur/argocd:1.0.RELEASE-${{ github.run_number }}
     # Pushes the newly built docker image to DockerHub with the tag specified.
 
- 
+    - name: scanning for SBOM
+      uses: anchore/sbom-action@v0
+      with:
+        image: meghakadur/argocd:1.0.RELEASE-${{ github.run_number }}
+        registry-username: ${{ secrets.DOCKER_USERNAME }}
+        registry-password: ${{ secrets.DOCKER_PASSWORD }}
+    # Uses Snchore to scan the Docker Image for software Bill of material (SBOM).
+    # which provides detaisl about the software components and dependencies.
 
-  
+    - uses: actions/checkout@v3
+    # Checks out the repository code again to ensure  that any changes made in the previous steps are included.
+    - uses: advanced-security/sbom-generator-action@v0.0.1
+      id: sbom
+      env:
+        GITHUB_TOKEN: ${{ secrets.NEW_TOKEN }}
+        #GITHUB_TOKEN: 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
+    # Generates an SBOM
+    - uses: actions/upload-artifact@v3.1.0
+      with:
+        path: ${{steps.sbom.outputs.fileName }}
+        name: "SBOM"
+    # Uploads the generated SBOM as an artifact 
 
   modifygit:
     needs: build-and-publish
