@@ -48,7 +48,7 @@ jobs:
     # Uses Snchore to scan the Docker Image for software Bill of material (SBOM).
     # which provides detaisl about the software components and dependencies.
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     # Checks out the repository code again to ensure  that any changes made in the previous steps are included.
     - uses: advanced-security/sbom-generator-action@v0.0.1
       id: sbom
@@ -66,7 +66,7 @@ jobs:
     needs: build-and-publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: changing the deployment of git repo
         with:
           repository: 'megha-6/gitautomate'
