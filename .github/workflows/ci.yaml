@@ -56,7 +56,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.NEW_TOKEN }}
         #GITHUB_TOKEN: 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
     # Generates an SBOM
-    - uses: actions/upload-artifact@v3.1.0
+    - uses: actions/upload-artifact@v3
       with:
         path: ${{steps.sbom.outputs.fileName }}
         name: "SBOM"
