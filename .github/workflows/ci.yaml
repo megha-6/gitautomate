@@ -60,7 +60,7 @@ jobs:
       with:
         path: ${{steps.sbom.outputs.fileName }}
         name: "SBOM"
-    # Uploads the generated SBOM as an artifact 
+    # Uploads the generated SBOM as an artifact.
 
   modifygit:
     needs: build-and-publish
