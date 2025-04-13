@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html
 <head>
     <title>Dynamic PHP Project</title>
     <style>
@@ -10,12 +10,12 @@
             background: linear-gradient(135deg, #B3D1FF, red);
             overflow: hidden;
             display: flex;
-            justify-content: center;
+            justify-content: cenr;
             align-items: center;
             height: 100vh;
         }
         .container {
-            text-align: center;
+            text-align: center
             background: rgba(255, 255, 255, 0.8);
             padding: 40px;
             border-radius: 15px;
