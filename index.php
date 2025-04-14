@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html
 <head>
-    <title>Dynamic PHP Project</title>
+    <title>Dynamic PHP Project<
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background: linear-gradient(135deg, #B3D1FF, red);
-            overflow: hidden;
+            overflow: hidden
             display: flex;
-            justify-content: cenr;
+            justify-content: cenr
             align-items: center;
             height: 100vh;
         }
