@@ -16,7 +16,7 @@ spec:
         app: sampleapp
     spec:
       containers:
-      - image: meghakadur/argocd:1.0.RELEASE-65
+      - image: meghakadur/argocd:1.0.RELEASE-66
         name: sampleapp
         ports: 
         - containerPort: 80
