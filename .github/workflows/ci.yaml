@@ -1,5 +1,5 @@
 #This is a proc build an image and deployed to DockerHub which will generat SBOM,Artifacts. Azure DevOps
-#Comme
+#Comment
 name: Php application to build the images
 on:
   push:
