@@ -50,7 +50,7 @@ jobs:
     # Generates an SBOM
     - uses: actions/upload-artifact@v4
       with:
-        path: ${{steps.sbom.outputs.fileName }}
+        path: ${{ steps.sbom.outputs.sbom }}
         name: "SBOM"
     # Uploads the generated SBOM as an artifact.
 
@@ -79,7 +79,7 @@ jobs:
           git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
           git push origin main
         env:
-          GIT_USERNAME: ${{ secrets.GIT_USE }}R
+          GIT_USERNAME: ${{ secrets.GIT_USE }}
           GIT_PASSWORD: ${{ secrets.GIT_PSW }}
           RUN_NUMBER: ${{ github.run_number }}
 
