@@ -36,6 +36,7 @@ jobs:
     # Pushes the newly built docker image to DockerHub with the tag specified.
 
     - name: scanning for SBOM
+      id: sbom
       uses: anchore/sbom-action@v0
       with:
         image: meghakadur/argocd:1.0.RELEASE-${{ github.run_number }}
