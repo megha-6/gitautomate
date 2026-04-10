@@ -42,6 +42,15 @@ jobs:
         image: meghakadur/argocd:1.0.RELEASE-${{ github.run_number }}
         registry-username: ${{ secrets.DOCKER_USERNAME }}
         registry-password: ${{ secrets.DOCKER_PASSWORD }}
+        output-file: sbom.spdx.json
+    - name: Debug SBOM file
+      run: ls -la
+
+    - name: Upload SBOM
+      uses: actions/upload-artifact@v4
+      with:
+        name: SBOM
+        path: sbom.spdx.json
     # Uses Snchore to scan the Docker Image for software Bill of material (SBOM).
     # which provides detaisl about the software components and dependencies.
 
