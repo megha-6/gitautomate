@@ -15,11 +15,11 @@ jobs:
     # This job runs on the latest version of Ubuntu.
     steps:
     - name: Checkout Code
-      uses: docker/setup-buildx-action@v1
+      uses: actions/checkout@v4
     # Check out the code from the repository to the GitHub Actions runner.
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
+      uses: docker/setup-buildx-action@v3
     # Sets up Docker Buildx, which is an advance feature for building Docker images.
 
     - name: Build Docker image
@@ -39,7 +39,7 @@ jobs:
     needs: build-and-publish
     runs-on: ubuntu-latest
     steps:
-      - uses: docker/setup-buildx-action@v3
+      - uses: actions/checkout@v4
         name: changing the deployment of git repo
         with:
           repository: 'megha-6/gitautomate'
