@@ -44,13 +44,8 @@ jobs:
     # Uses Snchore to scan the Docker Image for software Bill of material (SBOM).
     # which provides detaisl about the software components and dependencies.
 
-    - uses: actions/checkout@v4
+  
     # Checks out the repository code again to ensure  that any changes made in the previous steps are included.
-    - uses: advanced-security/sbom-generator-action@v0.0.1
-      id: sbom
-      env:
-        GITHUB_TOKEN: ${{ secrets.NEW_TOKEN }}
-        #GITHUB_TOKEN: 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
     # Generates an SBOM
     - uses: actions/upload-artifact@v4
       with:
